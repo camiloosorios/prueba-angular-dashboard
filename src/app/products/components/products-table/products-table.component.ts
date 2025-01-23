@@ -3,8 +3,6 @@ import { CommonModule, DecimalPipe } from '@angular/common';
 import { Component, TrackByFunction, computed, effect, signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
-import { provideIcons } from '@ng-icons/core';
-import { lucideArrowUpDown, lucideChevronDown, lucideEllipsis } from '@ng-icons/lucide';
 import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { BrnSelectModule } from '@spartan-ng/brain/select';
 import { BrnTableModule, PaginatorState, useBrnColumnManager } from '@spartan-ng/brain/table';
@@ -44,7 +42,6 @@ import { ShowProductComponent } from "../show-product/show-product.component";
     EditProductComponent,
     ShowProductComponent
 ],
-  providers: [provideIcons({ lucideChevronDown, lucideEllipsis, lucideArrowUpDown })],
   templateUrl: 'products-table.component.html',
 })
 export class ProductsTableComponent {

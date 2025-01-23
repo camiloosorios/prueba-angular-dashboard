@@ -19,8 +19,6 @@ src/environments/environment.development.ts
 
 .vscode/
 
-libs/ui/
-
 # IDEs and editors
 .idea/
 .project
