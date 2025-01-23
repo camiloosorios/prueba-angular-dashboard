@@ -1,0 +1,127 @@
+<div class="flex flex-col justify-between gap-4 sm:flex-row">
+  <div class="flex flex-col-reverse md:flex-row justify-between w-full">
+    <input hlmInput class="w-full md:w-80" placeholder="Filter by title..." [(ngModel)]="_titleFilter"
+      (ngModelChange)="_rawFilterInput.set($event)" />
+    <div class="flex flex-col-reverse md:flex-row gap-x-3 items-end gap-2 mb-2">
+      <app-create-product />
+      <button hlmBtn variant="outline" align="end" [brnMenuTriggerFor]="menuColumns" class="w-fit">
+        Columns
+        <i-lucide [img]="columnsIcon" [strokeWidth]="1" class="h-4 w-4"></i-lucide>
+      </button>
+    </div>
+  </div>
+  <ng-template #menuColumns>
+    <hlm-menu class="w-32">
+      <button *ngFor="let column of _brnColumnManager.allColumns; trackBy: trackByColumn" hlmMenuItemCheckbox
+        [disabled]="_brnColumnManager.isColumnDisabled(column.name)"
+        [checked]="_brnColumnManager.isColumnVisible(column.name)"
+        (triggered)="_brnColumnManager.toggleVisibility(column.name)">
+        <hlm-menu-item-check />
+        <span>{{ column.label }}</span>
+      </button>
+    </hlm-menu>
+  </ng-template>
+</div>
+
+<brn-table hlm stickyHeader class="border-border mt-4 block h-auto overflow-auto rounded-md border"
+  [dataSource]="_filteredSortedPaginatedPayments()" [displayedColumns]="_allDisplayedColumns()" [trackBy]="_trackBy"
+  [style.max-width]="maxWidth">
+  <brn-column-def name="select" class="sm:w-12">
+    <hlm-th *brnHeaderDef></hlm-th>
+    <hlm-td *brnCellDef="let element"></hlm-td>
+  </brn-column-def>
+  <brn-column-def name="title" class="w-64 sm:w-64">
+    <hlm-th truncate *brnHeaderDef>Title</hlm-th>
+    <hlm-td truncate *brnCellDef="let element">
+      {{ element.title | titlecase }}
+    </hlm-td>
+  </brn-column-def>
+  <brn-column-def name="price" class="w-32 sm:w-32">
+    <hlm-th *brnHeaderDef>Price</hlm-th>
+    <hlm-td class="font-medium tabular-nums" *brnCellDef="let element">
+      $ {{ element.price | number: '1.2-2' }}
+    </hlm-td>
+  </brn-column-def>
+  <brn-column-def name="description" class="w-72 sm:w-64">
+    <hlm-th truncate *brnHeaderDef>Description</hlm-th>
+    <hlm-td truncate *brnCellDef="let element">
+      {{ element.description | titlecase }}
+    </hlm-td>
+  </brn-column-def>
+  <brn-column-def name="category" class="w-32 sm:w-64">
+    <hlm-th truncate *brnHeaderDef>Category</hlm-th>
+    <hlm-td truncate *brnCellDef="let element">
+      {{ element.category | titlecase }}
+    </hlm-td>
+  </brn-column-def>
+  <brn-column-def name="image" class="w-32 sm:w-64">
+    <hlm-th truncate *brnHeaderDef>Image</hlm-th>
+    <hlm-td truncate *brnCellDef="let element">
+      <img [src]="element.image" alt="{{ element.company }}" width="50" />
+    </hlm-td>
+  </brn-column-def>
+  <brn-column-def name="actions" class="w-fit">
+    <hlm-th *brnHeaderDef>Actions</hlm-th>
+    <hlm-td *brnCellDef="let element">
+      <button hlmBtn variant="ghost" class="h-6 w-6 p-0.5" align="end" [brnMenuTriggerFor]="menuActions">
+        <i-lucide [img]="optionsIcon" [strokeWidth]="1" class="w-4 h-4" />
+      </button>
+      <ng-template #menuActions>
+        <hlm-menu>
+          <hlm-menu-label>Actions</hlm-menu-label>
+          <hlm-menu-separator />
+          <span
+            class='text-sm cursor-default hover:bg-gray-100 dark:hover:bg-secondary p-2 w-full inline-block rounded-md'
+            (click)="setOpenShow()">
+            Show Product
+            <app-show-product *ngIf="openShow" [product]="element"/>
+          </span>
+          <hlm-menu-separator />
+          <span
+            class='text-sm cursor-default hover:bg-gray-100 dark:hover:bg-secondary p-2 w-full inline-block rounded-md'
+            (click)="setOpenEdit()">
+            Edit Product
+            <app-edit-product *ngIf="openEdit" [product]="element"/>
+          </span>
+          <hlm-menu-separator />
+          <span
+            class='text-sm cursor-default hover:bg-gray-100 dark:hover:bg-secondary p-2 w-full inline-block rounded-md'
+            (click)="deleteProduct(element.id)">
+            Delete Product
+          </span>
+        </hlm-menu>
+      </ng-template>
+    </hlm-td>
+  </brn-column-def>
+  <div class="flex items-center justify-center p-20 text-muted-foreground" brnNoDataRow>No data</div>
+</brn-table>
+
+<div class="flex flex-col justify-between mt-4 sm:flex-row sm:items-center"
+  *brnPaginator="let ctx; totalElements: _totalElements(); pageSize: _pageSize(); onStateChange: _onStateChange">
+  <div class="flex mt-2 sm:mt-0 justify-between w-full">
+    <div>
+      <label htmlFor="pageSize" class="mr-2 text-sm my-auto">
+        Rows per page:
+      </label>
+      <brn-select class="inline-block" placeholder="{{ _availablePageSizes[0] }}" [(ngModel)]="_pageSize">
+        <hlm-select-trigger class="inline-flex mr-1 w-15 h-9">
+          <hlm-select-value />
+        </hlm-select-trigger>
+        <hlm-select-content>
+          <button *ngFor="let size of _availablePageSizes; trackBy: trackBySize" hlm-option [value]="size">
+            {{ size === 10000 ? 'All' : size }}
+          </button>
+        </hlm-select-content>
+      </brn-select>
+    </div>
+    <div class="flex items-center">
+      <span class="text-sm text-muted-foreground mx-2">Page {{ _currentPage() }} of {{ _totalPages() }}.</span>
+      <div class="flex space-x-1">
+        <button size="sm" variant="outline" hlmBtn [disabled]="!ctx.decrementable()"
+          (click)="ctx.decrement()">Previous</button>
+        <button size="sm" variant="outline" hlmBtn [disabled]="!ctx.incrementable()"
+          (click)="ctx.increment()">Next</button>
+      </div>
+    </div>
+  </div>
+</div>

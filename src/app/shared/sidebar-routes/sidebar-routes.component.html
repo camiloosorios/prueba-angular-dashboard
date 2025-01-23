@@ -1,0 +1,41 @@
+<div class='flex flex-col justify-between h-full border-r border-gray-200 dark:border-secondary'>
+    <div>
+        <div class='flex py-10 items-center justify-center gap-2 border-b border-gray-200 dark:border-secondary'>
+            <img src='/images/logo.svg' alt='Logo App' class="w-12 h-12" />
+            <span class='text-2xl'>AngularDashboard</span>
+        </div>
+        <div class='p-2 md:p-6'>
+            <p class='font-bold'>GENERAL</p>
+            <a routerLink="/dashboard" routerLinkActive="bg-slate-400/20"
+                class="flex items-center gap-x-2 mt-2 text-slate-700 dark:text-white text-sm hover:bg-slate-300/20 p-2 rounded-lg cursor-pointer">
+                <i-lucide [img]="dashboardIcon" [strokeWidth]="1" class="h-5"></i-lucide>
+                Dashboard
+            </a>
+            <a routerLink="/products" routerLinkActive="bg-slate-400/20"
+                class="flex items-center gap-x-2 mt-2 text-slate-700 dark:text-white text-sm hover:bg-slate-300/20 p-2 rounded-lg cursor-pointer">
+                <i-lucide [img]="productsIcon" [strokeWidth]="1" class="h-5"></i-lucide>
+                Products
+            </a>
+        </div>
+        <brn-separator hlmSeparator />
+        <div class='p-2 md:p-6'>
+            <p class='font-bold'>SUPPORT</p>
+            <p class='flex items-center gap-x-2 mt-2 text-slate-700 dark:text-white text-sm hover:bg-slate-300/20 p-2 rounded-lg cursor-pointer'
+                (click)="toggleTheme()">
+                <i-lucide [img]="toggleThemeIcon" [strokeWidth]="1" class="h-5"></i-lucide>
+                Toogle Theme
+            </p>
+            <p class='flex items-center gap-x-2 mt-2 text-slate-700 dark:text-white text-sm hover:bg-slate-300/20 p-2 rounded-lg cursor-pointer'
+                (click)="signOut()">
+                <i-lucide [img]="signOutIcon" [strokeWidth]="1" class="h-5"></i-lucide>
+                Sign out
+            </p>
+        </div>
+    </div>
+    <div>
+        <brn-separator hlmSeparator />
+        <footer class='mt-3 p-3 text-center'>
+            2025. All rights reserverd ©
+        </footer>
+    </div>
+</div>

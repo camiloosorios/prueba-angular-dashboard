@@ -1,0 +1,19 @@
+<div class='bg-[#fafbfc] dark:bg-black flex justify-between xl:justify-end px-3 py-2 gap-2'>
+    <div class='flex gap-x-2 items-center justify-between xl:justify-end w-full'>
+        <div class="xl:hidden">
+            <hlm-sheet side="left">
+                <button id="edit-profile" variant="outline" brnSheetTrigger hlmBtn class="border-none p-0">
+                    <i-lucide [img]="menuIcon" [strokeWidth]="2" class="h-6 w-6"></i-lucide>
+                </button>
+                <hlm-sheet-content *brnSheetContent="let ctx">
+                    <app-sidebar-routes/>
+                </hlm-sheet-content>
+            </hlm-sheet>
+        </div>
+        <div class="flex items-center">
+            <app-theme-selector />
+            <app-user-options [name]="(profile$ | async)?.name" [email]="(profile$ | async)?.email"
+                [image]="(profile$ | async)?.picture" />
+        </div>
+    </div>
+</div>

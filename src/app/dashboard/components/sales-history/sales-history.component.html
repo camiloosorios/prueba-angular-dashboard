@@ -1,0 +1,23 @@
+<div
+    class="mt-10 xl:mt-0 shadow-sm bg-background dark:bg-black rounded-lg p-5 border border-gray-200 dark:border-secondary">
+    <div class="flex gap-x-2 items-center">
+        <div class='p-2 bg-slate-400/20 rounded-lg'>
+            <i-lucide [img]="barIcon" [strokeWidth]="1" class="h-4 w-4"></i-lucide>
+        </div>
+        <p class='text-xl font-bold'>Sales History</p>
+    </div>
+    <div class="mt-5">
+        <p class="text-2xl mb-3">24.479</p>
+        <div class="flex gap-x-5 mb-5">
+            <div class="flex items-center gap-2 px-3 text-md bg-[#16C8C7] text-white rounded-xl w-fit">
+                8,5%
+                <i-lucide [img]="trendingIcon" [strokeWidth]="1" class="h-4 w-4"></i-lucide>
+            </div>
+            <p class="text-slate-500">+432 increased</p>
+        </div>
+
+        <div class="xl:h-[350px]">
+            <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="'line'"></canvas>
+        </div>
+    </div>
+</div>

@@ -1,59 +1,77 @@
-# PruebaDashboard
+# Proyecto: **AngularDashboard**
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.3.
+Este proyecto es una aplicación web de **Dashboard** construida con **Angular 19**. Cuenta con autenticación por medio de OAuth, interacción con una api de prueba y dashboard con tablas y gráficas.
 
-## Development server
+`Objetivo:` En este documento, te proporcionaré las instrucciones necesarias para configurar el proyecto en tu entorno local y cómo ponerlo en funcionamiento utilizando Docker.
 
-To start a local development server, run:
+## Requisitos
 
-```bash
-ng serve
-```
+Para ejecutar el proyecto correctamente, necesitarás las siguientes herramientas:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Node.js**: Necesitarás tener **Node.js 18 o superior** instalado en tu máquina. Puedes verificar si tienes Node.js instalado con el siguiente comando:
+  
+  ```bash
+  node -v
+  ```
 
-## Code scaffolding
+- **Docker**: Asegúrate de tener **Docker** instalado y funcionando en tu sistema. Puedes verificar esto con el siguiente comando:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+    ```bash
+    docker --version
+    ```
 
-```bash
-ng generate component component-name
-```
+- **Docker Compose**: Este proyecto utiliza Docker Compose para gestionar múltiples contenedores. Asegúrate de que Docker Compose también esté instalado. Verifica con:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+    ```bash
+    docker-compose --version
+    ```
 
-```bash
-ng generate --help
-```
+## Pasos para configurar el proyecto
 
-## Building
+1. ### Clonar el repositorio:
+    Primero, clona el repositorio a tu máquina local:
+    ```bash
+    git clone https://github.com/camiloosorios/prueba-angular-dashboard.git
 
-To build the project run:
+    cd prueba-angular-dashboard
+    ```
 
-```bash
-ng build
-```
+2. ### Configurar las variables de entorno:
+    Este proyecto utiliza variables de entorno para almacenar credenciales y configuraciones sensibles. Para facilitar su configuración, sigue los siguientes pasos:
+    
+    - Crea los archivos `src/environments/environment.ts` y `src/environments/environment.prod.ts` y ajusta los valores de las variables de entorno a tus configuraciones personales. Ejemplo:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+    ```bash
+    export const environment = {
+        production: false,
+        GOOGLE_CLIENT_ID: 'your-google-client-id',
+        GOOGLE_CLIENT_SECRET: 'your-google-client-secret',
+        API_URL: 'your-api-url'
+    };
+    ```
 
-## Running unit tests
+3. ### Ejecutar la aplicación con Docker y Docker compose
+    - **Construir la imagen y levantar el contenedor:** Para construir  y levantar la imagen de Docker, utiliza el siguiente comando:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+    ```bash
+    docker compose up --build
+    ```
 
-```bash
-ng test
-```
+    - Acceder a la aplicación: La aplicación estará disponible en http://localhost:3000. Abre tu navegador y navega a esta URL para ver el proyecto en funcionamiento.
 
-## Running end-to-end tests
+## Comandos útiles
+- Detener los contenedores
+    ```bash
+    docker-compose down
+    ```
 
-For end-to-end (e2e) testing, run:
+- Reconstruir sin cache
+    ```bash
+    docker-compose build --no-cache
+    ```
 
-```bash
-ng e2e
-```
+## Notas finales
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Con esta guía, se tiene todo lo necesario para ejecutar el proyecto en un entorno local. El objetivo principal de este proyecto es demostrar la integración de tecnologías como Angular, autenticación OAuth, y despliegue mediante Docker, ofreciendo una base sólida para evaluaciones técnicas y posibles extensiones.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Si existe algún problema durante la configuración, asegúrate de verificar los requisitos y los pasos descritos. Este proyecto busca ser un ejemplo funcional y práctico, adaptable a diversos ambientes de desarrollo.

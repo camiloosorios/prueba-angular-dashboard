@@ -1,0 +1,13 @@
+<div class="mt-10 xl:mt-0 shadow-sm bg-background dark:bg-black rounded-lg p-5 border border-gray-200 dark:border-secondary h-full">
+    <div class=" mx-auto">
+        <div class='flex gap-x-2 items-center mb-4'>
+            <div class='p-2 bg-slate-400/20 rounded-lg'>
+                <i-lucide [img]="percentIcon" [strokeWidth]="1" class="h-4 w-4"></i-lucide>
+            </div>
+            <p class='text-xl font-bold text-center'>Product Category Distribution</p>
+        </div>
+        <div class="max-w-60 mx-auto xl:mt-32">
+            <canvas baseChart [data]="pieChartData" [options]="pieChartOptions" [type]="'pie'"></canvas>
+        </div>
+    </div>
+</div>

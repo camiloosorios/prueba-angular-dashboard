@@ -1,0 +1,70 @@
+<div class='shadow-sm bg-background rounded-lg p-5 flex-1 border border-gray-200 dark:border-secondary mt-10'>
+    <div class='flex gap-x-2 items-center'>
+        <div class='p-2 bg-slate-400/20 rounded-lg'>
+            <i-lucide [img]="listIcon" [strokeWidth]="1" class="h-4 w-4"></i-lucide>
+        </div>
+        <p class='text-xl font-bold'>List of Main Costumers</p>
+    </div>
+    <div class="w-full overflow-scroll mt-5 border border-gray-200 dark:border-secondary rounded-lg" [style.max-width]="maxWidth">
+        <brn-table hlm stickyHeader [displayedColumns]="_allDisplayedColumns()" [dataSource]="_products()">
+            
+            <brn-column-def name="select" class="w-12">
+                <hlm-th *brnHeaderDef></hlm-th>
+                <hlm-td *brnCellDef="let element"></hlm-td>
+            </brn-column-def>
+    
+            <brn-column-def name="client" class="w-32 sm:w-64">
+                <hlm-th truncate *brnHeaderDef class="font-bold">Client</hlm-th>
+                <hlm-td truncate *brnCellDef="let element">
+                    {{ element.name | titlecase }}
+                </hlm-td>
+            </brn-column-def>
+    
+            <brn-column-def name="company" class="w-32 sm:w-64">
+                <hlm-th truncate *brnHeaderDef class="font-bold">Company</hlm-th>
+                <hlm-td truncate *brnCellDef="let element">
+                    {{ element.company | titlecase }}
+                </hlm-td>
+            </brn-column-def>
+    
+            <brn-column-def name="email" class="w-96 sm:w-96">
+                <hlm-th truncate *brnHeaderDef class="font-bold">Email</hlm-th>
+                <hlm-td truncate *brnCellDef="let element">
+                    {{ element.email }}
+                </hlm-td>
+            </brn-column-def>
+    
+            <brn-column-def name="country" class="w-32 sm:w-64">
+                <hlm-th truncate *brnHeaderDef class="font-bold">Country</hlm-th>
+                <hlm-td truncate *brnCellDef="let element">
+                    {{ element.country | titlecase }}
+                </hlm-td>
+            </brn-column-def>
+    
+            <brn-column-def name="volume" class="justify-end w-32 sm:w-40">
+                <hlm-th *brnHeaderDef class="font-bold">Volume</hlm-th>
+                <hlm-td class="font-medium tabular-nums justify-end" *brnCellDef="let element">
+                    ${{ element.volume | number: '1.2-2' }}
+                </hlm-td>
+            </brn-column-def>
+    
+            <brn-column-def name="logo" class="w-20 sm:w-20">
+                <hlm-th truncate *brnHeaderDef class="font-bold">Logo</hlm-th>
+                <hlm-td truncate *brnCellDef="let element">
+                    <img [src]="element.icon" alt="{{ element.company }}" width="25" />
+                </hlm-td>
+            </brn-column-def>
+    
+            <brn-column-def name="actions" class="w-16">
+                <hlm-th *brnHeaderDef></hlm-th>
+                <hlm-td *brnCellDef="let element">
+                    <button hlmBtn variant="ghost" class="h-6 w-6 p-0.5" align="end">
+                        Actions
+                    </button>
+                </hlm-td>
+            </brn-column-def>
+    
+            <div class="flex items-center justify-center p-20 text-muted-foreground" brnNoDataRow>No data</div>
+        </brn-table>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div
+  class="z-[1000000] fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center"
+  [class.hidden]="!isModalOpen"
+  [class.opacity-0]="!isModalOpen"
+  [class.opacity-100]="isModalOpen"
+  (click)="closeModal($event)"
+>
+  <div
+    #formContainer
+    class="max-w-full md:max-w-[400px] p-6 bg-white dark:bg-black rounded-lg shadow-lg"
+    (click)="$event.stopPropagation()"
+  >
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit($event)">
+      <div class="py-4 grid gap-4">
+        <div class="items-center grid grid-cols-4 gap-4">
+          <label hlmLabel for="title" class="text-right">Title</label>
+          <input
+            hlmInput
+            id="title"
+            class="col-span-3 border-gray-200 focus:outline-0 focus:border-gray-200 focus:ring-0 w-64"
+            formControlName="title"
+          />
+        </div>
+
+        <div class="items-center grid grid-cols-4 gap-4">
+          <label hlmLabel for="price" class="text-right">Price</label>
+          <input
+            hlmInput
+            id="price"
+            class="col-span-3 border-gray-200 focus:outline-0 focus:border-gray-200 focus:ring-0 w-64"
+            type="number"
+            formControlName="price"
+          />
+        </div>
+
+        <div class="items-center grid grid-cols-4 gap-4">
+          <label hlmLabel for="description" class="text-right">Description</label>
+          <textarea
+            hlmInput
+            id="description"
+            class="col-span-3 border-gray-200 focus:outline-0 focus:border-gray-200 focus:ring-0 w-64"
+            formControlName="description"
+          ></textarea>
+        </div>
+
+        <div class="items-center grid grid-cols-4 gap-4">
+          <label hlmLabel for="category" class="text-right">Category</label>
+          <brn-select class="inline-block" placeholder="Category" formControlName="category">
+            <hlm-select-trigger class="w-64">
+              <hlm-select-value></hlm-select-value>
+            </hlm-select-trigger>
+            <hlm-select-content>
+              <hlm-option *ngFor="let category of categories" [value]="category">{{ category }}</hlm-option>
+            </hlm-select-content>
+          </brn-select>
+        </div>
+
+        <div class="grid grid-cols-4 items-center gap-4">
+          <label hlmLabel for="image" class="text-right">Image</label>
+          <div class="w-64 overflow-hidden">
+            <input
+              hlmInput
+              id="image"
+              type="file"
+              accept="image/*"
+              class="w-64"
+              (change)="onFileChange($event)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <p class="font-italic text-red-700 text-sm text-center mb-5">All fields are required</p>
+
+      <div class="ml-auto w-fit">
+        <button hlmBtn type="submit" class="ml-auto">Save changes</button>
+      </div>
+    </form>
+  </div>
+</div>

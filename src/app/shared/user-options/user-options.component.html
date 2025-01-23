@@ -1,0 +1,20 @@
+<brn-popover sideOffset="5" closeDelay="100">
+    <button id="edit-profile" variant="outline" brnPopoverTrigger hlmBtn class="border-none hover:bg-transparent">
+        <img class="w-6 h-6 rounded-full" [src]="image">
+    </button>
+    <div hlmPopoverContent class="w-64 grid gap-4" *brnPopoverContent="let ctx">
+        <div class="flex gap-3 items-center">
+            <div class="w-fit">
+                <img class="w-6 h-6 rounded-full" [src]="image">
+            </div>
+            <div class="space-y-0 w-fit">
+                <p class="font-semibold w-fit">{{name}}</p>
+                <p class="text-sm w-fit">{{email}}</p>
+            </div>
+        </div>
+        <p class="flex items-center gap-x-2 text-slate-700 dark:text-white text-sm hover:bg-slate-300/20 p-2 rounded-lg cursor-pointer"
+            (click)="signOut()">
+            Sign out
+        </p>
+    </div>
+</brn-popover>

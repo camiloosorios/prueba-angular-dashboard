@@ -1,0 +1,26 @@
+<div class='shadow-sm bg-background dark:border dark:border-secondary rounded-lg px-5 py-3 hover:shadow-lg transition'>
+    <div class='flex justify-between'>
+        <div class='flex gap-2 items-center font-bold'>
+            <div class='p-2 bg-slate-400/20 rounded-lg'>
+                <i-lucide [img]="icon" [strokeWidth]="1" class="h-4 w-4"></i-lucide>
+            </div>
+            {{title}}
+        </div>
+        <hlm-tooltip>
+            <button hlmTooltipTrigger aria-describedby="Hello world" hlmBtn variant="outline"
+                class="border-none hover:bg-transparent">
+                <i-lucide [img]="infoIcon" [strokeWidth]="1" class="h-5"></i-lucide>
+            </button>
+            <span *brnTooltipContent class="flex items-center">
+                {{tooltipText}}
+            </span>
+        </hlm-tooltip>
+    </div>
+    <div class='flex gap-4 mt-2 md:mt-4'>
+        <p class='text-2xl'>{{total}}</p>
+        <div class='flex items-center gap-1 px-2 text-xs text-white rounded-lg h-[20px] bg-black dark:bg-secondary'>
+            {{average}}%
+            <i-lucide [img]="trendingIcon" [strokeWidth]="1" class="h-4 w-4"></i-lucide>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<hlm-dialog>
+    <button id="create-profile" brnDialogTrigger hlmBtn>
+        <i-lucide [img]="createIcon" [strokeWidth]="2" class="h-4 w-4"></i-lucide>
+        <span class="mx-2">Create</span>
+    </button>
+
+    <hlm-dialog-content class="sm:max-w-[425px]" *brnDialogContent="let ctx">
+        <hlm-dialog-header>
+            <h3 hlmDialogTitle>Create Product</h3>
+            <p hlmDialogDescription>Create your new product here. Click save when you're done.</p>
+        </hlm-dialog-header>
+
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit(ctx)">
+            <div class="py-4 grid gap-4">
+                <div class="items-center grid grid-cols-4 gap-4">
+                    <label hlmLabel for="title" class="text-right">Title</label>
+                    <input hlmInput id="title" formControlName="title"
+                        class="col-span-3 border-gray-200 focus:outline-0 focus:border-gray-200 focus:ring-0 w-64" />
+                </div>
+
+                <div class="items-center grid grid-cols-4 gap-4">
+                    <label hlmLabel for="price" class="text-right">Price</label>
+                    <input hlmInput id="price" formControlName="price"
+                        class="col-span-3 border-gray-200 focus:outline-0 focus:border-gray-200 focus:ring-0 w-64"
+                        type="number" />
+                </div>
+
+                <div class="items-center grid grid-cols-4 gap-4">
+                    <label hlmLabel for="description" class="text-right">Description</label>
+                    <textarea hlmInput id="description" formControlName="description"
+                        class="col-span-3 border-gray-200 focus:outline-0 focus:border-gray-200 focus:ring-0 w-64"></textarea>
+                </div>
+
+                <div class="items-center grid grid-cols-4 gap-4">
+                    <label hlmLabel for="category" class="text-right">Category</label>
+                    <brn-select class="inline-block" placeholder="Category" formControlName="category">
+                        <hlm-select-trigger class="w-64">
+                            <hlm-select-value />
+                        </hlm-select-trigger>
+                        <hlm-select-content>
+                            <hlm-option *ngFor="let category of categories" [value]="category">{{category}}</hlm-option>
+                        </hlm-select-content>
+                    </brn-select>
+                </div>
+
+                <div class='grid grid-cols-4 items-center gap-4'>
+                    <label hlmLabel for="image" class="text-right ">Image</label>
+                    <div class="w-64 overflow-hidden">
+                        <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview"
+                            class='h-56 object-cover rounded-md mx-auto' />
+                        <input hlmInput id="image" formControlName="image" type="file" accept="image/*"
+                            (change)="onFileChange($event)" class="w-64"/>
+                    </div>
+                </div>
+
+            </div>
+
+            <p *ngIf="productForm.invalid && productForm.touched"
+                class='font-italic text-red-700 text-sm text-center mb-5'>All fields are required</p>
+
+            <hlm-dialog-footer>
+                <button hlmBtn type="submit" [disabled]="productForm.invalid">Save changes</button>
+            </hlm-dialog-footer>
+        </form>
+    </hlm-dialog-content>
+</hlm-dialog>
