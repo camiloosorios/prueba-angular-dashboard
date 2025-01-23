@@ -1,23 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrnSelectImports } from '@spartan-ng/brain/select';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
 import { LucideAngularModule, Plus } from 'lucide-angular';
 import { Product } from '../../../core/interfaces';
-import { ProductsService } from '../../../core/services/products.service';
 
 @Component({
   selector: 'app-show-product',
   standalone: true,
   imports: [
-    BrnSelectImports,
-    HlmSelectImports,
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HlmLabelDirective,
     LucideAngularModule
   ],
   templateUrl: 'show-product.component.html'

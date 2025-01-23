@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { CommonModule, DecimalPipe } from '@angular/common';
-import { Component, ElementRef, TrackByFunction, ViewChild, computed, effect, signal } from '@angular/core';
+import { Component, TrackByFunction, computed, effect, signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { provideIcons } from '@ng-icons/core';
@@ -14,7 +14,7 @@ import { HlmMenuModule } from '@spartan-ng/ui-menu-helm';
 import { HlmSelectModule } from '@spartan-ng/ui-select-helm';
 import { HlmTableModule } from '@spartan-ng/ui-table-helm';
 import { ChevronDown, Ellipsis, LucideAngularModule } from 'lucide-angular';
-import { BehaviorSubject, debounceTime, map } from 'rxjs';
+import { debounceTime, map } from 'rxjs';
 import { Product } from '../../../core/interfaces';
 import { ProductsService } from '../../../core/services/products.service';
 import { ScreenSizeService } from '../../../core/services/screen-size.service';
