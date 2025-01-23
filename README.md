@@ -39,7 +39,11 @@ Para ejecutar el proyecto correctamente, necesitarás las siguientes herramienta
 2. ### Configurar las variables de entorno:
     Este proyecto utiliza variables de entorno para almacenar credenciales y configuraciones sensibles. Para facilitar su configuración, sigue los siguientes pasos:
     
-    - Crea los archivos `src/environments/environment.ts` y `src/environments/environment.prod.ts` y ajusta los valores de las variables de entorno a tus configuraciones personales. Ejemplo:
+    - Crea los archivos `src/environments/environment.ts` y `src/environments/environment.prod.ts`.
+    ```bash
+    ng g environments
+    ```
+    - Agrega los variables en las variables de entorno. Ejemplo:
 
     ```bash
     export const environment = {
@@ -57,7 +61,7 @@ Para ejecutar el proyecto correctamente, necesitarás las siguientes herramienta
     docker compose up --build
     ```
 
-    - Acceder a la aplicación: La aplicación estará disponible en http://localhost:3000. Abre tu navegador y navega a esta URL para ver el proyecto en funcionamiento.
+    - Acceder a la aplicación: La aplicación estará disponible en http://localhost:4200. Abre tu navegador y navega a esta URL para ver el proyecto en funcionamiento.
 
 ## Comandos útiles
 - Detener los contenedores
